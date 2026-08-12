@@ -1,7 +1,18 @@
-.contenedor {
+.contenedor,
+.pagina {
   max-width: 500px;
   margin: 40px auto;
   font-family: sans-serif;
+}
+
+.pagina form {
+  flex-direction: column;
+}
+
+.pagina a,
+.pagina button {
+  display: block;
+  margin-top: 15px;
 }
 
 form {
