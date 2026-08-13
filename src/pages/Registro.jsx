@@ -2,16 +2,16 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 
-function Login() {
+function Registro() {
   const [usuario, setUsuario] = useState('');
   const [clave, setClave] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  const entrar = async (e) => {
+  const registrar = async (e) => {
     e.preventDefault();
     setError('');
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch('/api/auth/registro', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, clave }),
@@ -19,19 +19,17 @@ function Login() {
 
     if (!res.ok) {
       const data = await res.json();
-      setError(data.error || 'Error al iniciar sesión');
+      setError(data.error || 'Error al registrar');
       return;
     }
 
-    localStorage.setItem('usuario', usuario);
-    navigate('/inicio');
+    navigate('/login');
   };
 
   return (
     <div className="pagina">
-      <img src="/messi.jpg" alt="" className="imagen-login" />
-      <h1>Iniciar sesión</h1>
-      <form onSubmit={entrar}>
+      <h1>Crear cuenta</h1>
+      <form onSubmit={registrar}>
         <input
           placeholder="Usuario"
           value={usuario}
@@ -45,12 +43,12 @@ function Login() {
           onChange={(e) => setClave(e.target.value)}
           required
         />
-        <button type="submit">Entrar</button>
+        <button type="submit">Registrarme</button>
       </form>
       {error && <p className="error">{error}</p>}
-      <Link to="/registro">Crear cuenta</Link>
+      <Link to="/login">Ya tengo cuenta</Link>
     </div>
   );
 }
 
-export default Login;
+export default Registro;
