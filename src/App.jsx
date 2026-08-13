@@ -2,7 +2,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import Login from './pages/Login';
 import Registro from './pages/Registro';
 import Inicio from './pages/Inicio';
-import Items from './pages/Items';
 import RutaProtegida from './RutaProtegida';
 
 function App() {
@@ -17,14 +16,6 @@ function App() {
           element={
             <RutaProtegida>
               <Inicio />
-            </RutaProtegida>
-          }
-        />
-        <Route
-          path="/items"
-          element={
-            <RutaProtegida>
-              <Items />
             </RutaProtegida>
           }
         />

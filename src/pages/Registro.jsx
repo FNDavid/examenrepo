@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 
+const API = import.meta.env.VITE_API_URL;
+
 function Registro() {
   const [usuario, setUsuario] = useState('');
   const [clave, setClave] = useState('');
@@ -11,7 +13,7 @@ function Registro() {
   const registrar = async (e) => {
     e.preventDefault();
     setError('');
-    const res = await fetch('/api/auth/registro', {
+    const res = await fetch(`${API}/registro`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, clave }),

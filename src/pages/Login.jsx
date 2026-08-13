@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../App.css';
 
+const API = import.meta.env.VITE_API_URL;
+
 function Login() {
   const [usuario, setUsuario] = useState('');
   const [clave, setClave] = useState('');
@@ -11,19 +13,21 @@ function Login() {
   const entrar = async (e) => {
     e.preventDefault();
     setError('');
-    const res = await fetch('/api/auth/login', {
+    const res = await fetch(`${API}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ usuario, clave }),
     });
 
+    const data = await res.json();
     if (!res.ok) {
-      const data = await res.json();
       setError(data.error || 'Error al iniciar sesión');
       return;
     }
 
-    localStorage.setItem('usuario', usuario);
+    localStorage.setItem('usuario', data.usuario);
+    localStorage.setItem('racha_actual', data.racha_actual);
+    localStorage.setItem('racha_maxima', data.racha_maxima);
     navigate('/inicio');
   };
 
