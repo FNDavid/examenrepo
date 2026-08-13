@@ -56,7 +56,6 @@ app.post('/login', async (req, res) => {
   let rachaActual = fila.racha_actual;
 
   if (fila.ultimo_login === hoyStr) {
-    // ya inicio sesion hoy, la racha no cambia
   } else if (fila.ultimo_login === ayerStr) {
     rachaActual = rachaActual + 1;
   } else {
