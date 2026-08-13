@@ -15,6 +15,7 @@ function Login() {
 
   return (
     <div className="pagina">
+      <img src="/messi.jpg" alt="" className="imagen-login" />
       <h1>Iniciar sesión</h1>
       <form onSubmit={entrar}>
         <input
